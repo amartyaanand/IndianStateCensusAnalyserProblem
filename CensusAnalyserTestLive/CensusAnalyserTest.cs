@@ -10,12 +10,12 @@ namespace CensusAnalyserTestLive
 {
     class CensusAnalyserTest
     {
-        static readonly string indianStateCensusHeaders = "State,Population,AreaInSqKm,DensityPerSqKm";
-        static readonly string indianStateCensusFilePath = @"D:\GitBash\IndianStateCensusAnalyserProblem\CensusAnalyserTestLive\CSVFiles\IndiaStateCensusData.csv";
-        static readonly string indianStateWrongFilePath = @"WrongIndiaStateCensusData.csv";
-        static readonly string indianStateWrongTypeFilePath = @"D:\GitBash\IndianStateCensusAnalyserProblem\CensusAnalyserTestLive\CSVFiles\IndiaStateCensusData.txt";
-        static readonly string indianStateIncorrectDelimiterFilePath = @"D:\GitBash\IndianStateCensusAnalyserProblem\CensusAnalyserTestLive\CSVFiles\DelimiterIndiaStateCensusData.csv";
-        static readonly string indianStateIncorrectHeaderFilePath = @"D:\GitBash\IndianStateCensusAnalyserProblem\CensusAnalyserTestLive\CSVFiles\WrongIndiaStateCensusData.csv";
+        static readonly string indianStateCodeHeaders = "SrNo,State Name,TIN,StateCode";
+        static readonly string indianStateCodeFilePath = @"D:\GitBash\IndianStateCensusAnalyserProblem\CensusAnalyserTestLive\CSVFiles\IndiaStateCode.csv";
+        static readonly string indianStateWrongFilePath = @"WrongIndiaStateCodeData.csv";
+        static readonly string indianStateWrongTypeFilePath = @"D:\GitBash\IndianStateCensusAnalyserProblem\CensusAnalyserTestLive\CSVFiles\IndiaStateCode.txt";
+        static readonly string indianStateIncorrectDelimiterFilePath = @"D:\GitBash\IndianStateCensusAnalyserProblem\CensusAnalyserTestLive\CSVFiles\DelimiterIndiaStateCode.csv";
+        static readonly string indianStateIncorrectHeaderFilePath = @"D:\GitBash\IndianStateCensusAnalyserProblem\CensusAnalyserTestLive\CSVFiles\WrongIndiaStateCode.csv";
         CensusAnalyser censusAnalyser;
         Dictionary<string, CensusDTO> totalRecord;
         Dictionary<string, CensusDTO> stateRecord;
@@ -29,15 +29,15 @@ namespace CensusAnalyserTestLive
         [Test]
         public void GivenIndianCensusDataFile_WhenReaded_ShouldReturnCensusDataCount()
         {
-            totalRecord = censusAnalyser.LoadCensusData(Country.INDIA, indianStateCensusFilePath, indianStateCensusHeaders);
-            Assert.AreEqual(29, totalRecord.Count);
+            stateRecord = censusAnalyser.LoadCensusData(Country.INDIA, indianStateCodeFilePath, indianStateCodeHeaders);
+            Assert.AreEqual(37, stateRecord.Count);
         }
         [Test]
         public void GivenIndianCensusDataFile_IfIncorret_ShouldThrowCustomException()
         {
             try
             {
-                totalRecord = censusAnalyser.LoadCensusData(Country.INDIA, indianStateWrongFilePath, indianStateCensusHeaders);
+                stateRecord = censusAnalyser.LoadCensusData(Country.INDIA, indianStateWrongFilePath, indianStateCodeHeaders);
             }
             catch (CensusAnalyserException e)
             {
@@ -49,7 +49,7 @@ namespace CensusAnalyserTestLive
         {
             try
             {
-                totalRecord = censusAnalyser.LoadCensusData(Country.INDIA, indianStateWrongTypeFilePath, indianStateCensusHeaders);
+                stateRecord = censusAnalyser.LoadCensusData(Country.INDIA, indianStateWrongTypeFilePath, indianStateCodeHeaders);
             }
             catch (CensusAnalyserException e)
             {
@@ -61,7 +61,7 @@ namespace CensusAnalyserTestLive
         {
             try
             {
-                totalRecord = censusAnalyser.LoadCensusData(Country.INDIA, indianStateIncorrectDelimiterFilePath, indianStateCensusHeaders);
+                stateRecord = censusAnalyser.LoadCensusData(Country.INDIA, indianStateIncorrectDelimiterFilePath, indianStateCodeHeaders);
             }
             catch (CensusAnalyserException e)
             {
@@ -73,7 +73,7 @@ namespace CensusAnalyserTestLive
         {
             try
             {
-                totalRecord = censusAnalyser.LoadCensusData(Country.INDIA, indianStateIncorrectHeaderFilePath, indianStateCensusHeaders);
+                stateRecord = censusAnalyser.LoadCensusData(Country.INDIA, indianStateIncorrectHeaderFilePath, indianStateCodeHeaders);
             }
             catch (CensusAnalyserException e)
             {
